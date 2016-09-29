@@ -90,6 +90,16 @@ class ConfigurationTest extends MigrationTestCase
         $this->assertSame('foobar', $configuration->getMigrationsColumnName());
     }
 
+    public function testGetSetMigrationsColumnLength()
+    {
+        $configuration = new Configuration($this->getConnectionMock());
+
+        $this->assertSame('255', $configuration->getMigrationsColumnLength());
+
+        $configuration->setMigrationsColumnLength('100');
+        $this->assertSame('100', $configuration->getMigrationsColumnLength());
+    }
+
     /**
      * @dataProvider methodsThatNeedsVersionsLoaded
      */

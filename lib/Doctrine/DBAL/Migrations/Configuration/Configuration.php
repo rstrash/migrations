@@ -111,6 +111,13 @@ class Configuration
     private $migrationsColumnName = 'version';
 
     /**
+     * The character length of the migration column
+     *
+     * @var string
+     */
+    private $migrationsColumnLength = '255';
+
+    /**
      * The path to a directory where new migration classes will be written
      *
      * @var string
@@ -315,6 +322,26 @@ class Configuration
     public function getMigrationsColumnName()
     {
         return $this->migrationsColumnName;
+    }
+
+    /**
+     * Set the migration column length
+     *
+     * @param string $columnLength The migration column length
+     */
+    public function setMigrationsColumnLength($columnLength)
+    {
+        $this->migrationsColumnLength = $columnLength;
+    }
+
+    /**
+     * Returns the migration column length
+     *
+     * @return string $migrationsColumnLength The migration column length
+     */
+    public function getMigrationsColumnLength()
+    {
+        return $this->migrationsColumnLength;
     }
 
     /**
@@ -726,7 +753,7 @@ class Configuration
         }
 
         $columns = [
-            $this->migrationsColumnName => new Column($this->migrationsColumnName, Type::getType('string'), ['length' => 255]),
+            $this->migrationsColumnName => new Column($this->migrationsColumnName, Type::getType('string'), ['length' => $this->migrationsColumnLength]),
         ];
         $table = new Table($this->migrationsTableName, $columns);
         $table->setPrimaryKey([$this->migrationsColumnName]);

@@ -56,6 +56,9 @@ class XmlConfiguration extends AbstractFileConfiguration
         if (isset($xml->table['column'])) {
             $config['column_name'] = (string) $xml->table['column'];
         }
+        if (isset($xml->table['length'])) {
+            $config['column_length'] = (string) $xml->table['length'];
+        }
         if (isset($xml->{'migrations-namespace'})) {
             $config['migrations_namespace'] = (string) $xml->{'migrations-namespace'};
         }
